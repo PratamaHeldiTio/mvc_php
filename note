@@ -1,0 +1,80 @@
+url/(controller)/(method)/(parameter) ini defaul app
+
+didalam folder init berfungsi untuk memanggil semua class untuk aplikasi
+
+class controller tidak sama dengan folder controllers, karena class Controler kelas utama dan folder controllers yang extend pada class Controler
+
+parseURL yaitu metode untuk mengambil dan memecah url yg dimasukan dan disimpan secara rapih
+
+prite url agar url rapih
+
+RewriteRule ^(.*)$ index.php?url=$1 [L] // ini digunakan untuk menulis ulang url 
+
+rtrim digunakan untuk menghapus karater di akhir
+
+filter_var(yang manu dibersihkan(url), FILTER_SANITAZE_URL) = digunakan untuk menghapus karater ngaco pada url
+
+explode(pemisah,yang mau dipisah) = digunakan untuk memisahkan sesuai menjadi array setiap ketemu dengan pemisahnya
+
+semua properti di App akan di extend ke setiap class di controllers
+
+file_exists(tempat file) =digunakan untuk mengecek apakah file sudah ada atau belum
+
+unset() digunakan untuk menghilangkan sesuatu 
+
+metode_exists (nama objek, nama methode) = digunakan untuk cek methode
+
+Array_values(aray yg mau diambil) = digunakan untuk mengambil isi array
+call_user_func_array([$this->controller, $this->method], $this->params) = digunakan untuk menjalankan controller, method dan mengirimkan parameter
+
+folder app digunakan untuk memuat semua aplikasi, didalam app ada
+controllers yaitu digunakan untuk mengontrol apa yang ingin dilakukan (halaman link)
+core digunakan untuk menyambung dari controllers ke yang lain jadi controllers harus extends core/Controller
+App digunakan untuk clas utama yang di intansiasi diindex
+constants digunakan untuk menyimpan alamat yang tidak di ubah-ubah
+models yaitu tempat menyimpan data
+views yaitu html yg akan dimunculkan pada web
+
+setiap class yang dibuat harus di intansiasi agar dapat digunakan
+
+/// cara membuat PDO
+pertama membuat variabel $dbh (hendlearnya) dan $stmt (querynya nnati)
+kedua membut function __constuct(){
+    ketiga membuat dsn (data base sourname)
+    $dsn = 'mysql:host=localhost(atau tempat server);dbname=nama databasenya';
+
+    keempat cek apakah database terhubung atau tidak dan membuat heandler PDO nya
+    try {
+        $this->dbh = new PDO (dsn, 'username database', 'password database')
+    } catch(PDOexception $e){
+        die($e->getMessage())
+    }
+}
+
+/// menjalankan PDO
+pertama didalam function () {
+    $this->stmt = $this->dbh->prepare ('query data base') // ini untuk prepare
+    $this->stmt->execute(); // menjalankan query
+    return $this->stmt->fetctAll(PDO::FETCH_ASSOC); // mengembalikan sekaliguna mengambil array dalam assoc array
+}
+
+
+//database wrapper yaitu digunakan agar mengakses database dengan mudah untuk cara buat di file database
+langkah 
+1. definisi kan coneksi database di file config
+2. buat fungsi construct di file core/database untuk persiapan dan optimalisasi database
+3. buat fungsi query database untuk menyiapkan query database
+4. buat fungsi bind untu membersihkan query DB
+5. buat fungsi eksekusi DB
+6. buat fungsi untuk mengembalikan hasil query
+
+untuk query DB untuk mendeteksi bind mengguNakan (:)
+
+
+// flash massage
+
+1. kita bekrja dengan $_SESSION kita buat  dan menbuat class Flasher denga methode didalamnya yaitu static
+2. buat class dan methode digunakan didalam core dengan menggunakan static dan hubungkan dengan file init
+3. kita jalankan session nya pada file index agar pertama kali dibuka sesion bisa dipakai
+4. panggil class flasher nya dimana kalian akan meletakkan pesannya nanti
+5. buat sessionnya pada methode mana yang akan kita pakai contoh berhasil/gagal pada saat ditambahkan

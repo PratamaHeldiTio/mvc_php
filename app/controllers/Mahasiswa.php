@@ -23,7 +23,7 @@ class Mahasiswa extends Controller
 
     public function insert()
     {
-        if ($this->model('Mahasiswa_model')->insertDataMhs($_POST) > 0 ){
+        if ($this->model('Mahasiswa_model')->insertDataMhs($_POST) > 0) {
             Flasher::setFlash('BERHASIL', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . 'mahasiswa');
             exit;
@@ -36,11 +36,11 @@ class Mahasiswa extends Controller
 
     public function delete($id)
     {
-        if ($this->model('mahasiswa_model')->delete($id) > 0){
+        if ($this->model('mahasiswa_model')->delete($id) > 0) {
             Flasher::setFlash('BERHASIL', 'dihapus', 'success');
             header('Location: ' . BASEURL . 'mahasiswa');
             exit;
-        }else{
+        } else {
             Flasher::setFlash('GAGAL', 'dihapus', 'danger');
             header('Location: ' . BASEURL . 'mahasiswa');
             exit;
@@ -54,11 +54,11 @@ class Mahasiswa extends Controller
 
     public function update()
     {
-        if ($this->model('mahasiswa_model')->updateData($_POST) > 0){
+        if ($this->model('mahasiswa_model')->updateData($_POST) > 0) {
             Flasher::setFlash('BERHASIL', 'diubah', 'success');
             header('Location: ' . BASEURL . 'mahasiswa');
             exit;
-        }else{
+        } else {
             Flasher::setFlash('GAGAL', 'diubah', 'danger');
             header('Location: ' . BASEURL . 'mahasiswa');
             exit;
